@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Crop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container mt-5">
+
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center text-primary">Edit Crop Details</h2>
+
+    <!-- Edit form -->
+    <form th:action="@{/crop/save}" th:object="${crop}" method="post">
+      <!-- Hidden field for cropId -->
+      <input type="hidden" th:field="*{cropId}"/>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Crop Name</label>
+        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter crop name" required/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Notes</label>
+        <textarea th:field="*{notes}" class="form-control" rows="4" placeholder="Enter crop notes or description"></textarea>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="/crop/list" class="btn btn-secondary">Back to List</a>
+        <button type="submit" class="btn btn-primary">Update Crop</button>
+		<a href="/dashboard" class="btn btn-secondary mt-3">Go To Dashboard</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

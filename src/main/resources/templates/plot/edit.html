@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Plot</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container mt-5">
+
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center text-success">Edit Plot</h2>
+
+    <form th:action="@{/plot/save}" th:object="${plot}" method="post">
+		
+		      <!-- Hidden field for cropId -->
+		      <input type="hidden" th:field="*{plotId}"/>
+      <!-- Plot Name -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Plot Name</label>
+        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter plot name (e.g. Thompson, Sharad)" required/>
+      </div>
+
+      <!-- ✅ Fixed Crop Dropdown -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Select Crop</label>
+        <select th:field="*{crop.cropId}" class="form-select" required>
+          <option value="" disabled selected>Select Crop</option>
+          <option th:each="crop : ${crops}" 
+                  th:value="${crop.cropId}" 
+                  th:text="${crop.name}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Precutting Date -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Pre-Cutting Date</label>
+        <input type="date" th:field="*{precuttingDate}" class="form-control"/>
+      </div>
+
+      <!-- Notes -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Notes</label>
+        <textarea th:field="*{notes}" class="form-control" rows="4" placeholder="Enter additional notes"></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between">
+        <a href="/plot/list" class="btn btn-secondary">Back to List</a>
+        <button type="submit" class="btn btn-success">update</button>
+      </div>
+	  <a href="/dashboard" class="btn btn-secondary mt-3">Go To Dashboard</a>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
