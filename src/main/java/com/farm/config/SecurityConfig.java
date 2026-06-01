@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .failureUrl("/login?error=true")
                 .permitAll()
             )
+            
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
@@ -62,4 +63,12 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return userDetailsService;
     }
+   @Bean
+public org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory tomcatFactory() {
+    TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+    factory.addConnectorCustomizers(connector -> connector.setScheme("https"));
+    return factory;
+}
+    
+    )
 }
