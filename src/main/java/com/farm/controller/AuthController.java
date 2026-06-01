@@ -43,14 +43,4 @@ public class AuthController {
     public String showLoginForm() {
         return "login";
     }
-
-    @GetMapping("/home")
-    public String homePage() {
-        return "home";
-    }
-
-    @GetMapping("/admin/dashboard")
-    public String adminDashboard() {
-        return "admin-dashboard";
-    }
 }
